@@ -24,6 +24,7 @@ from models.active_dendrite import ActiveDendriteNeuron
 from models.hybrid_causal import HybridCausalNeuron
 from models.predictive_coding import PredictiveCausalNeuron
 from models.selective_intervention import SelectiveInterventionNeuron
+from models.causal_dendrite import CausalDendriteNeuron
 
 # Model registry - maps model names to their classes and default parameters
 MODEL_REGISTRY = {
@@ -36,6 +37,18 @@ MODEL_REGISTRY = {
         "class": BaselineNeuron,
         "params": {"n_inputs": 5, "eta": 0.3},
         "description": "Standard correlation-based learning",
+    },
+    "causal_dendrite": {
+        "class": CausalDendriteNeuron,
+        "params": {
+            "n_inputs": 5,
+            "n_dendrites": 3,
+            "eta": 0.2,
+            "alpha_init": 0.8,
+            "tau_init": 0.5,
+            "intervention_strength": 0.7,
+        },
+        "description": "Multi-timescale dendritic computation with prospective coding and causal intervention",
     },
     "active_dendrite": {
         "class": ActiveDendriteNeuron,
